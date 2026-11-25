@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admissions - Vivekananda School, T. Nagar, Chennai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main">
+    <div class="navbar">
+      <a href="index.html" class="logo">VIVEKANANDA SCHOOL</a>
+      <div class="menu">
+        <ul>
+          <li><a href="homepage.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="academics.html">Academics</a></li>
+          <li><a href="admissions.html" class="active">Admissions</a></li>
+          <li><a href="faculty.html">Teachers</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="events&news.html">Events & News</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <h2>Admission Inquiry</h2>
+      <form id="admissionForm">
+        <input type="text" id="studentName" placeholder="Student Full Name" required>
+        <input type="text" id="parentName" placeholder="Parent / Guardian Name" required>
+        <input type="tel" id="phoneNum" placeholder="Contact Mobile Number" required>
+        <select id="classSelect" required>
+          <option value="" disabled selected>Select Class</option>
+          <option value="pre-primary">Nursery / LKG / UKG</option>
+          <option value="primary">Primary (Classes 1 – 5)</option>
+          <option value="middle">Middle School (Classes 6 – 8)</option>
+          <option value="secondary">Secondary (Classes 9 – 10)</option>
+          <option value="senior">Higher Secondary (Classes 11 – 12)</option>
+        </select>
+        <button type="submit" class="cn">Submit Inquiry</button>
+        <div class="status-msg" id="admissionStatus"></div>
+      </form>
+    </div>
+  </div>
+  <footer>&copy; 2026 Vivekananda School, T. Nagar, Chennai - 600017, Tamil Nadu. All Rights Reserved.</footer>
+
+  <script>
+    document.getElementById('admissionForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('studentName').value.trim();
+      const status = document.getElementById('admissionStatus');
+      status.style.display = 'block';
+      status.textContent = 'Inquiry received for ' + name + ' at Vivekananda School, T. Nagar, Chennai.';
+      this.reset();
+    });
+  </script>
+</body>
+</html>

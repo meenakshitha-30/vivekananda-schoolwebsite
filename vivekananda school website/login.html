@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Login - Vivekananda School, T. Nagar, Chennai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main">
+    <div class="navbar">
+      <a href="index.html" class="logo">VIVEKANANDA SCHOOL</a>
+      <div class="menu">
+        <ul>
+          <li><a href="homepage.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="academics.html">Academics</a></li>
+          <li><a href="admissions.html">Admissions</a></li>
+          <li><a href="faculty.html">Teachers</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="events&news.html">Events & News</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html" class="active">Login</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <h2 id="loginTitle">Student Login</h2>
+
+      <div class="role-tabs">
+        <button type="button" class="role-tab active" onclick="selectRole('student', this)">Student</button>
+        <button type="button" class="role-tab" onclick="selectRole('teacher', this)">Teacher</button>
+        <button type="button" class="role-tab" onclick="selectRole('parent', this)">Parent</button>
+      </div>
+
+      <p class="role-hint" id="roleHint">Access homework, timetable, and exam marks.</p>
+
+      <form id="loginForm">
+        <input type="text" id="userIdInput" placeholder="Student Roll / Admission Number" required>
+        <input type="text" id="extraInput" placeholder="Student Roll / Admission Number" style="display: none;">
+        <input type="password" id="passwordInput" placeholder="Password" required>
+        <button type="submit" class="cn" id="loginBtn">Login as Student</button>
+        <div class="status-msg" id="loginStatus"></div>
+      </form>
+    </div>
+  </div>
+  <footer>&copy; 2026 Vivekananda School, T. Nagar, Chennai - 600017, Tamil Nadu. All Rights Reserved.</footer>
+
+  <script>
+    let currentRole = 'student';
+
+    function selectRole(role, btn) {
+      currentRole = role;
+      document.querySelectorAll('.role-tab').forEach(function (tab) {
+        tab.classList.remove('active');
+      });
+      btn.classList.add('active');
+
+      const title = document.getElementById('loginTitle');
+      const hint = document.getElementById('roleHint');
+      const userIdInput = document.getElementById('userIdInput');
+      const extraInput = document.getElementById('extraInput');
+      const loginBtn = document.getElementById('loginBtn');
+      const status = document.getElementById('loginStatus');
+      status.style.display = 'none';
+
+      if (role === 'student') {
+        title.textContent = 'Student Login';
+        hint.textContent = 'Access homework, timetable, and exam marks.';
+        userIdInput.placeholder = 'Student Roll / Admission Number';
+        extraInput.style.display = 'none';
+        extraInput.required = false;
+        loginBtn.textContent = 'Login as Student';
+      } else if (role === 'teacher') {
+        title.textContent = 'Teacher Login';
+        hint.textContent = 'Manage attendance, class notes, and student marks.';
+        userIdInput.placeholder = 'Teacher Staff ID / Email';
+        extraInput.style.display = 'none';
+        extraInput.required = false;
+        loginBtn.textContent = 'Login as Teacher';
+      } else {
+        title.textContent = 'Parent Login';
+        hint.textContent = 'Check child attendance, notices, and progress.';
+        userIdInput.placeholder = 'Parent Mobile / Email';
+        extraInput.style.display = 'block';
+        extraInput.placeholder = 'Student Roll / Admission Number';
+        extraInput.required = true;
+        loginBtn.textContent = 'Login as Parent';
+      }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const userVal = document.getElementById('userIdInput').value.trim();
+      const roleName = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
+      const status = document.getElementById('loginStatus');
+      status.style.display = 'block';
+      status.textContent = roleName + ' login submitted for ' + userVal + ' (Vivekananda School, T. Nagar, Chennai).';
+      this.reset();
+    });
+  </script>
+</body>
+</html>
